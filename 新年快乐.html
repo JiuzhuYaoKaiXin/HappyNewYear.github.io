@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>祝大家新年快乐</title>
+    <style>
+        body {
+            background: red;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling for demonstration purpose */
+        }
+        .greeting-container {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    var greetings = [
+        "新年快乐",
+        "恭喜发财",
+        "万事如意",
+        "福禄寿喜",
+        "心想事成"
+        // Add more greetings as needed
+    ];
+
+    function generateRandomPosition() {
+        var left = Math.random() * (window.innerWidth - 300);
+        var top = Math.random() * (window.innerHeight - 150);
+        return { left: left, top: top };
+    }
+
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function generateGreeting() {
+        var randomPosition = generateRandomPosition();
+        var randomColor = getRandomColor();
+
+        var greetingContainer = document.createElement("div");
+        greetingContainer.className = "greeting-container";
+        greetingContainer.style.left = randomPosition.left + "px";
+        greetingContainer.style.top = randomPosition.top + "px";
+        greetingContainer.style.backgroundColor = randomColor;
+
+        var randomIndex = Math.floor(Math.random() * greetings.length);
+        greetingContainer.textContent = greetings[randomIndex];
+
+        document.body.appendChild(greetingContainer);
+
+        setTimeout(function() {
+            greetingContainer.style.display = "block";
+        }, 1000); // Set the delay time in milliseconds
+    }
+
+    // Generate greetings on page load
+    for (var i = 0; i < 39; i++) {
+        generateGreeting();
+    }
+</script>
+</body>
+</html>
